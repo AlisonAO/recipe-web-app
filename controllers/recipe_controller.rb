@@ -1,4 +1,4 @@
-class PostsController < Sinatra::Base
+class RecipeController < Sinatra::Base
 
 	configure :development do 
 		register Sinatra::Reloader
@@ -43,12 +43,54 @@ class PostsController < Sinatra::Base
 	      body: "This is the third post"
 	  }]
 
-	  get '/posts' do 
-		@page_header = "Alison's Recipe Box"
+	  get '/recipes' do 
+		@page_header = "Take a Look at the Recipes Below:"
 		@recipes = $recipes
-		erb :"posts/index" 
+		erb :"recipes/index" 
 	end
 
+	get '/recipes/new' do 
+		erb :"recipes/new"
+	end
+
+
+	get '/recipes/:id' do 
+		@page_header = "Specific Post"
+		id = params[:id].to_i #dynamic variable
+		@recipes = $recipes[id]
+		erb :"recipes/show" 
+	end
+
+	post "/recipes" do 
+		# @data = params
+		# $posts << @data
+		new_recipe = {
+			title: params[:title],
+			body: params[:body]
+		}
+		$recipes << new_recipe
+		redirect '/recipes'
+	end
+
+	get "/recipes/:id/edit" do 
+		@id = params[:id].to_i
+		@recipes = $recipes[@id]
+		erb :"recipes/edit"
+	end
+
+	put "/recipes/:id" do 
+		id = params[:id].to_i
+
+		$recipes[id][:title] = params[:title]
+		$recipes[id][:body] = params[:body]
+		redirect "/recipes/#{id}" #string interperlation only works with double quotes
+	end
+
+	delete "/recipes/:id" do 
+		id = params[:id].to_i
+		$recipes.delete_at(id)
+		redirect '/recipes'
+	end
 
 
 end

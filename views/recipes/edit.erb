@@ -1,0 +1,17 @@
+<h1>Edit a Recipe!/h1>
+
+<form action="/recipes/<%= :id %>" method="POST">  <!-- will send a post request to /post -->
+
+	<label for= "title">Title: </label>
+
+	<input type="text" name="title" value="<%= @recipe[:title] %>" placeholder="Post Title">
+
+	<label for="body"></label> 
+	
+	<textarea name="body" placeholder="Post Body"><%= @recipe[:body] %></textarea>
+
+	<input type="hidden" name="_method" value="PUT">
+
+	<input type="submit" value="Save">
+
+</form>
