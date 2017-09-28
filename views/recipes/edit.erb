@@ -6,6 +6,10 @@
 
 	<input type="text" name="title" value="<%= @recipes[:title] %>" placeholder="Post Title">
 
+	<label for="ingredients"></label> 
+	
+	<textarea name="ingredients" placeholder="Ingredients"><%= @recipes[:ingredients] %></textarea>
+
 	<label for="body"></label> 
 	
 	<textarea name="body" placeholder="Post Body"><%= @recipes[:body] %></textarea>

@@ -2,6 +2,7 @@
 
 <% @recipes.each_with_index  do |recipe, index| %>
 <h2>Recipe Title: <%= recipe[:title] %></h2>
+<h3><%= recipe[:ingredients] %></h3>
 <h3><%= recipe[:body] %></h3>
 <a href="/recipes/<%=index%>"> Click Here </a> 
 <br>

@@ -10,7 +10,7 @@ class RecipeController < Sinatra::Base
 
 	$recipes = [{
 	      title: "Apple Pie",
-	      image: "word",
+	      ingredients: "word",
 	      body: "Method
 				1. For the pastry, place the flour, sugar and lemon zest into a bowl and rub in the butter until the mixture resembles breadcrumbs. Add the beaten egg and stir with a round-bladed knife until the mixture forms a dough.
 				2. Set aside one-third of the pastry for the lid.
@@ -24,22 +24,27 @@ class RecipeController < Sinatra::Base
 	  },
 	  {
 	      title: "Post 2",
+	      ingredients: "word",
 	      body: "This is the second post"
 	  },
 	  {
 	      title: "Post 3",
+	      ingredients: "word",
 	      body: "This is the second post"
 	  },
 	  {
 	      title: "Post 4",
+	      ingredients: "word",
 	      body: "This is the second post"
 	  },
 	  {
 	      title: "Post 5",
+	      ingredients: "word",
 	      body: "This is the second post"
 	  },
 	  {
 	      title: "Post 6",
+	      ingredients: "word",
 	      body: "This is the third post"
 	  }]
 
@@ -64,6 +69,7 @@ class RecipeController < Sinatra::Base
 	post "/recipes" do 
 		new_recipe = {
 			title: params[:title],
+			ingredients: params[:ingredients],
 			body: params[:body]
 		}
 		$recipes << new_recipe
@@ -80,8 +86,9 @@ class RecipeController < Sinatra::Base
 		id = params[:id].to_i
 
 		$recipes[id][:title] = params[:title]
+		$recipes[id][:ingredients] = params[:ingredients]
 		$recipes[id][:body] = params[:body]
-		redirect "/recipes/#{id}" #string interperlation only works with double quotes
+		redirect "/recipes/#{id}" 
 	end
 
 	delete "/recipes/:id" do 
