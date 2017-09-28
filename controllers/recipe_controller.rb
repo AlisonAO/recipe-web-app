@@ -56,14 +56,12 @@ class RecipeController < Sinatra::Base
 
 	get '/recipes/:id' do 
 		@page_header = "Specific Post"
-		id = params[:id].to_i #dynamic variable
+		id = params[:id].to_i 
 		@recipes = $recipes[id]
 		erb :"recipes/show" 
 	end
 
 	post "/recipes" do 
-		# @data = params
-		# $posts << @data
 		new_recipe = {
 			title: params[:title],
 			body: params[:body]
